@@ -45,7 +45,7 @@ set hlsearch " highlight matches
 " turn off search highlighting
 nnoremap <leader><space> :nohlsearch<CR>
 " always show status 
-:set statusline=2
+:set laststatus=2
 " utf-8 encoding
 set encoding=utf-8
 " }}}
@@ -54,7 +54,6 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
@@ -68,8 +67,6 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
-" mark extra whitespace
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " }}} 
 " Folding {{{
 set foldenable " enable folding
@@ -113,6 +110,8 @@ nnoremap <leader>rs :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Plugin settings {{{
 " CtrlP
 let g:ctrlp_match_window = 'bottom,order:ttb'
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
 " YCM
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
